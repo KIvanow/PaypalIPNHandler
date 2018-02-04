@@ -1,9 +1,10 @@
 <?php
-    require_once './PaypalIPNHandlerModel.php';
+    include_once( './PaypalIPNHandlerModel.php' );
+    include_once( './PaypalIPN.php' );
     
     class PaypalIPNHandler{
         function __construct() {     	 
-            $this->PaypalIPNHanlderModel = new PaypalIPNHanlderModel();                        
+            $this->PaypalIPNHanlderModel = new PaypalIPNHandlerModel();                        
         }
         
         public function updateSubscription( $paymentData ){
@@ -118,7 +119,7 @@
             }				
         
             // Reply with an empty 200 response to indicate to paypal the IPN was received correctly
-            $this->output->set_header('HTTP/1.0 200 OK');
+            header('HTTP/1.0 200 OK');
         }
     }
 

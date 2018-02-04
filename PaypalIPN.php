@@ -115,7 +115,7 @@ class PaypalIPN
 
         // This is often required if the server is missing a global cert bundle, or is using an outdated one.
         if ($this->use_local_certs) {
-            curl_setopt($ch, CURLOPT_CAINFO, __DIR__ . "/cert/cacert.pem");
+            curl_setopt($ch, CURLOPT_CAINFO, __DIR__ . "/cacert.pem");
         }
         curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);

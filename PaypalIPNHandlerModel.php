@@ -1,17 +1,18 @@
 <?php
+    define('DATABASE_NAME', '');
+
+    define('DATABASE_USER', '');
+            
+    define('DATABASE_PASS', '}');
+            
+    define('DATABASE_HOST', '');
+
     require_once './DBPDO.php';
+           
     
     class PaypalIPNHandlerModel {
         function __construct() {
-     	    define('DATABASE_NAME', '');
-	
-            define('DATABASE_USER', '');
-            
-            define('DATABASE_PASS', '}');
-            
-            define('DATABASE_HOST', '');
-            
-            $this->DB = new DBPDO();                        
+     	       $this->DB = new DBPDO();                        
         }
 
         public function getUserByEmail( $email ){
@@ -41,10 +42,6 @@
 
         public function removeCancelations( $paymentMail ){
             $this->DB->execute( 'UPDATE subscriptionCancelations SET deleted=1 WHERE paymentMail="'. $paymentMail .'"');
-            $this->db->where('paymentMail', $paymentMail);                     
-            $this->db->update('subscriptionCancelations', array(
-                'deleted' => 1                
-            ));
         }
 
         public function addSubscriptionUpdate( 
@@ -61,7 +58,7 @@
 				$itemName
         ){
             $this->DB->execute( 
-                'INSERT INTO subscriptionCancelations 
+                'INSERT INTO subscriptionUpdates 
                 (
                     paymentMail, 
                     transactionId, 
